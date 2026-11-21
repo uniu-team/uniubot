@@ -1,6 +1,16 @@
 {
+  "id": "about",
   "name": "about",
-  "description": "提供 /about 指令，显示版本与项目信息",
   "version": "1.0.0",
-  "author": "unify-z"
+  "description": "提供 /about 指令，显示版本与项目信息",
+  "author": "unify-z",
+  "protocol": "jsonrpc-2.0-ndjson",
+  "apiVersion": "v1",
+  "runtime": "go",
+  "command": "./plugin",
+  "args": [],
+  "enabled": true,
+  "capabilities": ["message.reply"],
+  "concurrency": 2,
+  "timeoutMs": 3000
 }

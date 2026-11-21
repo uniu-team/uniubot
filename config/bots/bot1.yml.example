@@ -3,16 +3,26 @@ self_id: 12345
 prefix:
   - /
 error_reply_enabled: true
+# Users listed here are elevated to BOT_ADMIN. The key is "<adapter_id>:<user_id>".
+admin: []
 adapters:
   - type: onebotHttp
     config:
       # OneBot v11 HTTP API base for outbound calls, e.g. /send_group_msg.
-      # This is the OneBot server, not SkiBot's /message callback URL.
+      # This is the OneBot server, not uniubot's /message callback URL.
       api_url: http://127.0.0.1:5700
-      # Deprecated compatibility fallback for api_url.
-      url: http://127.0.0.1:5700
       # Optional OneBot v11 HMAC-SHA1 secret for validating inbound reports.
       secret: ""
       # Optional OneBot v11 access token for outbound HTTP API requests.
       access_token: ""
+  - type: webchat
+    config:
+      port: 8080
+      host: 0.0.0.0
+# Per-bot plugin settings. <id> is the plugin id from plugin.json.
 plugin_config: {}
+#  help:
+#    enabled: true
+#  example-go:
+#    enabled: true
+#    greeting: "Hello from Go"

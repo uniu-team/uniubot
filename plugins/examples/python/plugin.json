@@ -1,0 +1,27 @@
+{
+  "id": "example-python",
+  "name": "Example Python Plugin",
+  "version": "1.0.0",
+  "description": "Reference Python plugin using the JSON-RPC protocol with only the standard library",
+  "author": "uniubot",
+  "protocol": "jsonrpc-2.0-ndjson",
+  "apiVersion": "v1",
+  "runtime": "python",
+  "command": "python3",
+  "args": ["main.py"],
+  "enabled": true,
+  "capabilities": [
+    "logger",
+    "config.read",
+    "bot.info",
+    "command.list",
+    "message.reply",
+    "db"
+  ],
+  "concurrency": 4,
+  "timeoutMs": 5000,
+  "restart": {
+    "maxAttempts": 2,
+    "backoffMs": 500
+  }
+}

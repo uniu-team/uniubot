@@ -1,34 +1,46 @@
+# Go build artifacts
+/bin/
+*.test
+*.out
+coverage.*
+
+# Compiled plugin executables (built with `make plugins`)
+/plugins/*/plugin
+/plugins/*/plugin.exe
+/plugins/examples/*/plugin
+/plugins/examples/*/plugin.exe
+
+# Local documentation (the original docs are preserved on v1)
+/docs/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Node.js
 node_modules/
-*.log
-**/tmp
-**/temp
-**/build
-**/dist
-.vscode/
+frontend/node_modules/
+frontend/dist/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-config/config.yml
-/dist/
-plugins/*/
-plugins/*.*
-!plugins/help/
-!plugins/help/**
-!plugins/about/
-!plugins/about/**
-plugins/**/*.js
+*.log
 
-**/config.json
-config/bots/*.yml
-config/bots/*.yaml
-.idea/
-data/*.*
-data/jwt/*.*
+# Runtime data and local configuration (examples stay tracked)
+/config/config.yml
+/config/bots/*.yml
+/config/bots/*.yaml
+!/config/bots/*.example
+!/config/bots/*.yml.example
+/data/*.*
+/data/jwt/
+/logs/
+**/tmp
+**/temp
+**/build
 **/cert
-/logs
-docs
-*.timestamp-*
-
-.sisyphus
+.vscode/
+.idea/
+.sisyphus/
 opencode.json
-
+*.timestamp-*

@@ -1,0 +1,13 @@
+# Conda environment for the example Python plugin.
+#
+#   conda env create -f environment.yml
+#   conda activate uniubot-plugin-example
+#   python main.py
+#
+# The plugin only depends on the Python standard library; pinning the
+# interpreter keeps plugin behaviour reproducible across machines.
+name: uniubot-plugin-example
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11

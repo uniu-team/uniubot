@@ -6,7 +6,13 @@ web:
   username: admin
   password: admin
 dashboard:
+  # debug: true starts the Vite dev server automatically (needs
+  # `cd frontend && npm install` once) and proxies the dashboard to it, so the
+  # UI hot-reloads without rebuilding. In production leave it false and build
+  # the dashboard with `make frontend`.
   debug: false
+  # Port for the automatically started dev server (default 3000).
+  dev_port: 3000
 database:
   engine: sqlite
   sqlite:
@@ -20,17 +26,30 @@ database:
   cleanup_time: "01:00"
   timezone: ""
 
+# Out-of-process plugins (see docs/plugin-system.md).
+plugins:
+  permissions:
+    # declared: grant every capability the plugin declares in its manifest
+    # safe:     like declared, but db / message.send need an explicit grant
+    # strict:   only grant the capabilities listed under grants
+    mode: declared
+    grants: {}
+    deny: {}
+
 # Bot configuration example (place in config/bots/<name>.yml):
-# self_id: 10001
+# name: Bot-1
+# self_id: 12345
 # prefix:
 #   - /
-#   - !
+#   - "!"
 # error_reply_enabled: true
+# admin:
+#   - "onebotHttp:123456"   # adapter_id:user_id elevated to BOT_ADMIN
 # adapters:
 #   - type: onebotHttp
 #     config:
-#       url: http://localhost:5700
-#       # Optional OneBot v11 HMAC-SHA1 secret for validating inbound reports.
+#       api_url: http://127.0.0.1:5700
+#       # Optional OneBot v11 HMAC-SHA1 secret validating inbound reports.
 #       secret: ""
 #       # Optional OneBot v11 access token for outbound HTTP API requests.
 #       access_token: ""
@@ -38,3 +57,9 @@ database:
 #     config:
 #       port: 8080
 #       host: 0.0.0.0
+# plugin_config:
+#   help:
+#     enabled: true
+#   example-go:
+#     enabled: true
+#     greeting: "Hello from Go"

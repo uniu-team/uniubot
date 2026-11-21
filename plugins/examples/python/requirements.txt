@@ -1,0 +1,2 @@
+# The example plugin only uses the Python standard library, so there are no
+# third-party requirements. Add packages here when a plugin needs them.
