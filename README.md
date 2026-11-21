@@ -38,12 +38,8 @@ line and write a line.
 Reference implementations live in `plugins/examples/{go,python,lua}`; scaffold a new plugin
 with `./scripts/create-plugin.sh`.
 
-## 📚 Docs
-- [Plugin system](docs/plugin-system.md) — manifest, lifecycle, permissions, SDKs
-- [Plugin protocol](docs/plugin-protocol.md) — the JSON-RPC wire specification
-- [Architecture](docs/architecture.md) — Go module layout and design decisions
-- [Migration notes](docs/migration-notes.md) — differences from the TypeScript version
+The plugin doc is being improved.
 
 ## 📍 ToDo
 - [ ] Plugin Market
-- [x] Documentation
+- [ ] Documenation
