@@ -3,7 +3,6 @@ package main
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 	"strings"
@@ -14,12 +13,9 @@ import (
 
 func main() {
 	plugin := pluginsdk.New(pluginsdk.Meta{
-		ID:      "help",
-		Name:    "help",
-		Version: "1.0.0",
-		Commands: []pluginrpc.CommandSpec{
-			{Command: "help", Description: "获取帮助信息"},
-		},
+		ID:           "help",
+		Name:         "help",
+		Version:      "1.0.0",
 		Capabilities: []string{"command.list", "message.reply"},
 	})
 
@@ -32,17 +28,10 @@ func main() {
 		return nil
 	})
 
-	plugin.Handle("command.execute", func(ctx context.Context, raw json.RawMessage) (any, error) {
-		var req pluginrpc.ExecuteParams
-		if err := json.Unmarshal(raw, &req); err != nil {
-			return nil, pluginrpc.NewError(pluginrpc.CodeInvalidParams, err.Error())
-		}
-		if req.Command != "help" {
-			return nil, pluginrpc.NewError(pluginrpc.CodeMethodNotFound, "unknown command "+req.Command)
-		}
+	plugin.Command("help", "获取帮助信息", func(ctx context.Context, req *pluginsdk.CommandRequest) (pluginrpc.HandlerResult, error) {
 		commands, err := plugin.Host().CommandList(ctx)
 		if err != nil {
-			return nil, err
+			return pluginrpc.HandlerResult{}, err
 		}
 		if len(prefixes) == 0 {
 			prefixes = req.Bot.Prefix
@@ -56,10 +45,7 @@ func main() {
 			}
 			builder.WriteString(fmt.Sprintf("%s%s - %s\n", prefix, command.Command, command.Description))
 		}
-		return pluginrpc.HandlerResult{
-			Segments: []pluginrpc.Segment{pluginsdk.SegmentText(builder.String())},
-			Finish:   true,
-		}, nil
+		return pluginsdk.Result(pluginsdk.SegmentText(builder.String())), nil
 	})
 
 	if err := plugin.Serve(); err != nil {
